@@ -3,11 +3,11 @@ const CSV_URL = "https://docs.google.com/spreadsheets/d/10vvu0DJXvXhWkYfiAyOElug
 // Map points → rank *label* (you changed to names, which is fine)
 function computeRank(score) {
   const s = Number(score) || 0;
-  if (s <= 50)   return 'Pion';
-  if (s <= 300)  return 'Bot';
-  if (s <= 500)  return 'Young Nigga';
+  if (s <= 50)   return 'Private';
+  /*if (s <= 300)  return 'Bot';
+   if (s <= 500)  return 'Young Nigga';
   if (s <= 800)  return 'Big Steppa';
-  if (s <= 999)  return 'Mafia Boss';
+  if (s <= 999)  return 'Mafia Boss';*/
   return 'Master Prestige'; // 1000+
 }
 
@@ -116,4 +116,5 @@ async function autoUpdate() {
 }
 
 autoUpdate(); // start loop
+
 
