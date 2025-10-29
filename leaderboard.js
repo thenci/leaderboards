@@ -8,7 +8,7 @@ function computeRank(score) {
    if (s <= 500)  return 'Young';
   if (s <= 800)  return 'Big Steppa';
   if (s <= 999)  return 'Mafia Boss';*/
-  if (s = 9999)  return 'Moderator';
+  if (s === 9999)  return 'Moderator';
   return 'Master Prestige'; // 1000+
 }
 
@@ -117,6 +117,7 @@ async function autoUpdate() {
 }
 
 autoUpdate(); // start loop
+
 
 
 
