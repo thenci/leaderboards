@@ -5,7 +5,7 @@ function computeRank(score) {
   const s = Number(score) || 0;
   if (s <= 50)   return 'Private';
   /*if (s <= 300)  return 'Bot';
-   if (s <= 500)  return 'Young Nigga';
+   if (s <= 500)  return 'Young';
   if (s <= 800)  return 'Big Steppa';
   if (s <= 999)  return 'Mafia Boss';*/
   return 'Master Prestige'; // 1000+
@@ -116,5 +116,6 @@ async function autoUpdate() {
 }
 
 autoUpdate(); // start loop
+
 
 
