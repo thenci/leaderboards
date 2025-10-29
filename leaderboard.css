@@ -1,0 +1,150 @@
+/* --- Fix: hard-align navbar content to the same width/padding as the page/card --- */
+:root{
+  --gold:#d4af37;
+  --page-pad:18px;
+  --content-max:960px;
+
+}
+
+/* background (unchanged) */
+body{
+  margin:0;
+  font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,"Apple Color Emoji","Segoe UI Emoji";
+  background:
+    linear-gradient(0deg, rgba(0,0,0,.45), rgba(0,0,0,.45)),
+    url("bg.png") center/cover fixed no-repeat;
+  color:#111;
+}
+
+/* NAVBAR — keep simple page padding, then constrain inner blocks to the same max width as .page */
+.navbar{
+  position:fixed; top:0; left:0; right:0;
+  display:grid; grid-template-rows:auto auto; gap:6px;
+  padding:14px var(--page-pad) 10px;            /* SAME side padding as .page */
+  background:rgba(0,0,0,.55);
+  color:var(--gold);
+  backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px);
+  border-bottom:2px solid var(--gold);
+  z-index:1000; text-align:center;
+}
+
+/* Constrain title/labels to the same width as .page content */
+.navbar .title,
+.navbar .labels{
+  max-width: var(--content-max);
+  margin-left:auto;
+  margin-right:auto;
+  width:100%;
+  text-align: center;
+
+}
+.navbar .labels{
+  max-width: var(--content-max);
+  margin-left:auto;
+  margin-right:auto;
+  width:100%;
+  text-align: center;
+padding-left: 3rem !important;
+}
+
+.navbar .title{
+  margin:0;
+  font-weight:800;
+  font-size:clamp(20px,3.2vw,28px);
+  color:var(--gold);
+  -webkit-text-stroke:1px #fff; 
+  justify-self:center;
+}
+
+/* Labels MUST mirror the row grid and inner padding of the card */
+.navbar .labels{
+  display:grid;
+  grid-template-columns:1fr 1fr 1fr;   /* matches .row */
+  align-items:center;
+  font-weight:600;
+  letter-spacing:.3px;
+  padding:0 18px;                      /* = .leaderboard's horizontal padding */
+}
+.navbar .labels span{ color:var(--gold); opacity:.95; }
+.navbar .labels span:nth-child(1){ text-align:left; }
+.navbar .labels span:nth-child(2){ text-align:center; }
+.navbar .labels span:nth-child(3){ text-align:right; }
+
+/* PAGE container (unchanged except to emphasize same max width) */
+.page{
+  padding:calc(76px + var(--page-pad)) var(--page-pad) var(--page-pad);
+  max-width:var(--content-max);
+  margin:0 auto;
+}
+.section{ margin:12px 0; }
+
+/* CARD */
+.leaderboard{
+  width:100%;
+  background:rgba(255,255,255,.72);
+  backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px);
+  border-radius:14px;
+  padding:16px 18px;                   /* this is mirrored by .labels padding */
+  box-shadow:
+    0 0 0 2px rgba(255,255,255,.9),
+    0 1px 0 0 rgba(0,0,0,.06) inset,
+    0 10px 30px rgba(0,0,0,.20);
+}
+
+/* Rows grid EXACTLY matches labels */
+.row{
+  display:grid;
+  grid-template-columns:1fr 1fr 1fr;   /* Name | Rank | Points */
+  align-items:center; gap:14px;
+}
+
+.name{
+  font-weight:900; color:#000;
+  font-size:clamp(18px,2.5vw,22px);
+  justify-self:start; text-align:left;
+}
+
+/* Rank pill (button-like border) centered in its column */
+.row .rank{
+  justify-self:center; text-align:center;
+  font-weight:500; color:var(--gold);
+  font-size:clamp(16px,2.2vw,20px);
+  display:inline-block; padding:.35em 1.1em;
+  border-radius:9999px;
+  background:rgba(255,255,255,.65);
+  box-shadow:
+    0 0 0 2px rgba(255,255,255,.95),
+    0 1px 0 0 rgba(0,0,0,.06) inset;
+}
+
+/* Points flush-right to match header */
+.points{
+  justify-self:end; text-align:right;
+  font-weight:500; color:var(--gold);
+  font-size:clamp(16px,2.2vw,20px);
+    border-radius:9999px;
+  background:rgba(255,255,255,.65);
+  box-shadow:
+    0 0 0 2px rgba(255,255,255,.95),
+    0 1px 0 0 rgba(0,0,0,.06) inset;
+    padding:.35em 1.1em;
+}
+
+@media (max-width:480px){
+  .row{ grid-template-columns:1.2fr .9fr .9fr; }
+}
+
+.rank.grey { color: #808080; } 
+.rank.blue   { color: #4da6ff; }
+.rank.brown        { color: #8b4513; }
+.rank.green        { color: #28a745; }
+.rank.purple       { color: #800080; }
+
+.points.grey { color: #808080; } 
+.points.blue   { color: #4da6ff; }
+.points.brown        { color: #8b4513; }
+.points.green        { color: #28a745; }
+.points.purple       { color: #800080; }
+.leaderboard{
+  margin-bottom: 24px;
+}
